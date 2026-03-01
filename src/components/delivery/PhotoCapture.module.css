@@ -1,0 +1,80 @@
+.captureWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.captureButton {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 4/3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    background: var(--bg-input);
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.captureButton:hover {
+    border-color: var(--blue);
+    background: var(--bg-hover);
+}
+
+.captureIcon {
+    font-size: 2.5rem;
+}
+
+.captureLabel {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.captureHint {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.previewWrapper {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.previewImage {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--green);
+}
+
+.retakeOverlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-sm);
+    background: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    cursor: pointer;
+}
+
+.retakeText {
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.hiddenInput {
+    display: none;
+}

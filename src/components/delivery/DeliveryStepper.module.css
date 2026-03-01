@@ -1,0 +1,130 @@
+.stepperWrapper {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md);
+    border-bottom: 1px solid var(--border);
+}
+
+.headerTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.progressBar {
+    height: 4px;
+    background: var(--bg-input);
+}
+
+.progressFill {
+    height: 100%;
+    background: var(--blue);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.stepContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xl) var(--space-md);
+    gap: var(--space-lg);
+    animation: fadeIn 0.3s ease;
+}
+
+.stepLabel {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.stepHint {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.detailsForm {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.formLabel {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xs);
+}
+
+.navigation {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    border-top: 1px solid var(--border);
+    background: var(--bg-secondary);
+}
+
+.navigation .btn {
+    flex: 1;
+}
+
+.docList {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.docItem {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-card);
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.successOverlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-primary);
+    z-index: 100;
+    animation: fadeIn 0.3s ease;
+    gap: var(--space-md);
+}
+
+.successIcon {
+    font-size: 4rem;
+    animation: pulse 1s ease;
+}
+
+.successText {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--green);
+}
+
+.successSub {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
