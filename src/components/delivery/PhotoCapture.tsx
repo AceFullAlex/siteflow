@@ -39,6 +39,7 @@ export default function PhotoCapture({ label, icon, onCapture, captured }: Photo
 
             {captured ? (
                 <div className={styles.previewWrapper} onClick={handleClick}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={captured} alt={label} className={styles.previewImage} />
                     <div className={styles.retakeOverlay}>
                         <span className={styles.retakeText}>📷 Tap to retake</span>
