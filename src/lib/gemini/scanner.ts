@@ -1,4 +1,4 @@
-import { ai, geminiModel } from './client';
+import { getAi, geminiModel } from './client';
 import { createClient } from '@/lib/supabase/server';
 import sharp from 'sharp';
 
@@ -22,7 +22,7 @@ Document types: CMR (international transport), TAD (transport advice), DN (deliv
 
 export async function scanDocument(base64: string, mimeType: string) {
     try {
-        const response = await ai.models.generateContent({
+        const response = await getAi().models.generateContent({
             model: geminiModel,
             contents: [{
                 role: 'user',

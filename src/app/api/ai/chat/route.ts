@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
-import { ai, geminiModel } from '@/lib/gemini/client';
+import { getAi, geminiModel } from '@/lib/gemini/client';
 import { createClient } from '@/lib/supabase/server';
 
 const SYSTEM_PROMPT = `You are SiteFlow AI, a helpful assistant for a datacenter construction site logistics team.
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
         }
 
         // Step 1: Get query plan from Gemini
-        const planResponse = await ai.models.generateContent({
+        const planResponse = await getAi().models.generateContent({
             model: geminiModel,
             contents: [{ role: 'user', parts: [{ text: `${SYSTEM_PROMPT}\n\nUser question: "${message}"` }] }],
         });
@@ -98,7 +98,7 @@ export async function POST(request: Request) {
         }
 
         // Step 3: Format the results
-        const formatResponse = await ai.models.generateContent({
+        const formatResponse = await getAi().models.generateContent({
             model: geminiModel,
             contents: [{
                 role: 'user',
