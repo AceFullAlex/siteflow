@@ -1,5 +1,18 @@
 # Changelog
 
+## v1.0.0 — Bug Fixes, Delivery Details & Storage Optimization
+- **Bug Fix:** Delivery feed cards are now clickable — navigate to `/delivery/[id]`
+- **Bug Fix:** Added Supplier dropdown filter to admin dashboard
+- **Bug Fix:** Added "Open" filter tab (shows pending + issue deliveries combined)
+- **Bug Fix:** Missing Documents Tracker with "Mark as Resolved" button per document
+- **Bug Fix:** Manager dashboard now includes Material Progress section with ordered vs delivered progress bars
+- **Feature:** Delivery Details View (`/delivery/[id]`) — AI summary, photo gallery with lightbox, raw extracted text, materials list, document status
+- **Feature:** Export to ZIP — download all delivery photos + AI summary as a `.zip` file
+- **Feature:** Post-AI image compression — `sharp` compresses photos to ~200KB after Gemini extracts data (saves ~90% Supabase storage)
+- **Middleware:** `/delivery` route protected for admin + manager roles
+- **Cleanup:** Removed `.DS_Store` files and test artifacts
+- **Dependencies:** Added `sharp` (image compression), `archiver` (ZIP generation)
+
 ## v0.9.0 — PWA & Deploy Ready
 - PWA manifest, service worker (network-first), app icons
 - Ready for Vercel deployment

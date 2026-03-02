@@ -1,0 +1,80 @@
+.tracker {
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-xl);
+}
+
+.trackerTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+}
+
+.docList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.docCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(248, 113, 113, 0.15);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    animation: fadeIn 0.2s ease;
+}
+
+.docInfo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.docSupplier {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.docDate {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.resolveBtn {
+    min-height: 40px;
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.emptyState {
+    text-align: center;
+    padding: var(--space-xl);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+}
+
+@media (max-width: 768px) {
+    .docCard {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .resolveBtn {
+        width: 100%;
+    }
+}

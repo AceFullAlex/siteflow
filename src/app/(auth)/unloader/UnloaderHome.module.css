@@ -1,0 +1,234 @@
+.welcome {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.greeting {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.nameHighlight {
+    color: var(--brand-orange);
+}
+
+.subtitle {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+
+/* Progress Card */
+.progressCard {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl) var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.progressHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: var(--space-md);
+}
+
+.progressLabel {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.progressCount {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.countCurrent {
+    font-size: 2.2rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    color: var(--brand-orange);
+    line-height: 1;
+}
+
+.countDivider {
+    font-size: 1.4rem;
+    color: var(--text-muted);
+}
+
+.countExpected {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.countUnit {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-left: 4px;
+}
+
+.progressPct {
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--text-secondary);
+}
+
+.progressTrack {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--brand-orange), #f0a94d);
+    border-radius: var(--radius-full);
+    transition: width 0.6s ease;
+}
+
+/* Stats Row */
+.statsRow {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+}
+
+.miniStat {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+}
+
+.miniIcon {
+    color: var(--brand-orange);
+    flex-shrink: 0;
+}
+
+.miniValue {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.miniLabel {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* CTA Button */
+.ctaButton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: 20px;
+    background: var(--brand-orange);
+    color: var(--text-inverse);
+    border: none;
+    border-radius: var(--radius-lg);
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    margin-bottom: var(--space-2xl);
+    box-shadow: 0 4px 24px rgba(232, 145, 45, 0.3);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ctaButton:hover {
+    background: var(--brand-orange-hover);
+    transform: scale(1.02);
+    box-shadow: 0 6px 30px rgba(232, 145, 45, 0.4);
+}
+
+.ctaButton:active {
+    transform: scale(1.05);
+}
+
+/* Recent Section */
+.recentSection {
+    margin-top: var(--space-md);
+}
+
+.sectionTitle {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+}
+
+.recentScroll {
+    display: flex;
+    gap: var(--space-sm);
+    overflow-x: auto;
+    padding-bottom: var(--space-sm);
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.recentScroll::-webkit-scrollbar {
+    display: none;
+}
+
+.recentCard {
+    min-width: 140px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+}
+
+.recentSupplier {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.recentTime {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.recentBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    background: var(--green-soft);
+    color: var(--green);
+    border-radius: var(--radius-full);
+    font-size: 0.65rem;
+    font-weight: 600;
+}
+
+.skeletonGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}

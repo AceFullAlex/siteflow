@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { getSession, getRoleRedirectPath } from '@/lib/utils/session';
+import { getSession } from '@/lib/utils/session';
 
 export default async function AuthLayout({
     children,

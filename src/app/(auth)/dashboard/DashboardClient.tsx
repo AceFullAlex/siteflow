@@ -1,10 +1,14 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { LayoutGrid, Truck, Package } from 'lucide-react';
+import NavHeader from '@/components/layout/NavHeader';
 import StatsCards from '@/components/dashboard/StatsCards';
 import DeliveryFeed from '@/components/dashboard/DeliveryFeed';
+import MissingDocsTracker from '@/components/dashboard/MissingDocsTracker';
+import MaterialProgress from '@/components/dashboard/MaterialProgress';
 import AIChatPanel from '@/components/dashboard/AIChatPanel';
+import styles from './Dashboard.module.css';
 
 interface Stats {
     deliveriesToday: number;
@@ -14,23 +18,63 @@ interface Stats {
     behindSchedule: number;
 }
 
+interface MissingDoc {
+    id: string;
+    delivery_id: string;
+    doc_type: string;
+    status: string;
+    flagged_at: string;
+    supplier?: string;
+}
+
+const TABS = [
+    { key: 'action', label: 'Action Center', icon: LayoutGrid },
+    { key: 'deliveries', label: 'Deliveries', icon: Truck },
+    { key: 'materials', label: 'Materials', icon: Package },
+] as const;
+
+type TabKey = typeof TABS[number]['key'];
+
 export default function DashboardClient({ name }: { name: string }) {
+    const [activeTab, setActiveTab] = useState<TabKey>('action');
     const [stats, setStats] = useState<Stats>({ deliveriesToday: 0, expectedToday: 0, issueCount: 0, missingDocs: 0, behindSchedule: 0 });
-    const [deliveries, setDeliveries] = useState([]);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [deliveries, setDeliveries] = useState<any[]>([]);
     const [filter, setFilter] = useState('today');
-    const router = useRouter();
+    const [supplierFilter, setSupplierFilter] = useState('');
+    const [suppliers, setSuppliers] = useState<string[]>([]);
+    const [missingDocsList, setMissingDocsList] = useState<MissingDoc[]>([]);
+    const [loading, setLoading] = useState(true);
 
     const fetchData = useCallback(async () => {
-        const [statsRes, deliveriesRes] = await Promise.all([
+        const params = new URLSearchParams({ filter });
+        if (supplierFilter) params.set('supplier', supplierFilter);
+
+        const [statsRes, deliveriesRes, docsRes] = await Promise.all([
             fetch('/api/dashboard/stats'),
-            fetch(`/api/dashboard/deliveries?filter=${filter}`),
+            fetch(`/api/dashboard/deliveries?${params}`),
+            fetch('/api/dashboard/deliveries?filter=missing_docs'),
         ]);
         if (statsRes.ok) setStats(await statsRes.json());
         if (deliveriesRes.ok) {
             const data = await deliveriesRes.json();
-            setDeliveries(data.deliveries || []);
+            const delivs = data.deliveries || [];
+            setDeliveries(delivs);
+
+            const uniqueSuppliers = [...new Set(
+                delivs.map((d: { supplier: string | null }) => d.supplier).filter(Boolean)
+            )] as string[];
+            setSuppliers((prev) => {
+                const merged = [...new Set([...prev, ...uniqueSuppliers])];
+                return merged.sort();
+            });
         }
-    }, [filter]);
+        if (docsRes.ok) {
+            const data = await docsRes.json();
+            setMissingDocsList(data.missingDocs || []);
+        }
+        setLoading(false);
+    }, [filter, supplierFilter]);
 
     useEffect(() => {
         fetchData();
@@ -38,28 +82,76 @@ export default function DashboardClient({ name }: { name: string }) {
         return () => clearInterval(interval);
     }, [fetchData]);
 
-    const handleLogout = async () => {
-        await fetch('/api/auth/logout', { method: 'POST' });
-        router.push('/');
+    const handleResolve = (docId: string) => {
+        setMissingDocsList((prev) => prev.filter((d) => d.id !== docId));
+        fetch('/api/dashboard/stats').then((r) => r.json()).then(setStats).catch(() => { });
     };
 
-    const hour = new Date().getHours();
-    const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
+    const handleTabSwitch = (tab: TabKey) => {
+        if (navigator.vibrate) navigator.vibrate(30);
+        setActiveTab(tab);
+    };
+
     const today = new Date().toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
 
     return (
-        <div className="container" style={{ padding: 'var(--space-xl) var(--space-md)' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--space-xl)' }}>
-                <div>
-                    <h1 style={{ fontSize: '1.5rem', fontWeight: 700 }}>{greeting}, {name} 👋</h1>
-                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>{today}</p>
+        <>
+            <NavHeader name={name} role="Admin" />
+            <div className="container" style={{ padding: 'var(--space-xl) var(--space-md)' }}>
+                <div style={{ marginBottom: 'var(--space-lg)' }}>
+                    <h1 className={styles.pageTitle}>Dashboard</h1>
+                    <p className={styles.pageDate}>{today}</p>
                 </div>
-                <button className="btn btn-ghost" onClick={handleLogout}>Logout</button>
-            </div>
 
-            <StatsCards {...stats} />
-            <DeliveryFeed deliveries={deliveries} onFilterChange={setFilter} activeFilter={filter} />
+                {/* Tab Bar */}
+                <div className={styles.tabBar}>
+                    {TABS.map(({ key, label, icon: Icon }) => (
+                        <button
+                            key={key}
+                            className={`${styles.tab} ${activeTab === key ? styles.tabActive : ''}`}
+                            onClick={() => handleTabSwitch(key)}
+                            id={`tab-${key}`}
+                        >
+                            <Icon size={16} strokeWidth={2} />
+                            <span>{label}</span>
+                        </button>
+                    ))}
+                </div>
+
+                {/* Tab Content */}
+                <div className={styles.tabContent}>
+                    {loading ? (
+                        <div className={styles.skeletonGroup}>
+                            <div className="skeleton skeleton-card" />
+                            <div className="skeleton skeleton-card" />
+                            <div className="skeleton skeleton-card" />
+                        </div>
+                    ) : (
+                        <>
+                            {activeTab === 'action' && (
+                                <>
+                                    <StatsCards {...stats} />
+                                    <MissingDocsTracker documents={missingDocsList} onResolve={handleResolve} />
+                                </>
+                            )}
+                            {activeTab === 'deliveries' && (
+                                <DeliveryFeed
+                                    deliveries={deliveries}
+                                    onFilterChange={setFilter}
+                                    activeFilter={filter}
+                                    suppliers={suppliers}
+                                    activeSupplier={supplierFilter}
+                                    onSupplierChange={setSupplierFilter}
+                                />
+                            )}
+                            {activeTab === 'materials' && (
+                                <MaterialProgress />
+                            )}
+                        </>
+                    )}
+                </div>
+            </div>
             <AIChatPanel />
-        </div>
+        </>
     );
 }

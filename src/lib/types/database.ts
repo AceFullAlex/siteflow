@@ -1,7 +1,7 @@
 export interface User {
     id: string;
     name: string;
-    pin_hash: string;
+    pin: string;
     role: 'admin' | 'unloader' | 'manager';
     created_at: string;
 }

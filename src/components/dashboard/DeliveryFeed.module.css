@@ -1,18 +1,27 @@
+.filterRow {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+    flex-wrap: wrap;
+}
+
 .filterTabs {
     display: flex;
-    gap: var(--space-sm);
-    margin-bottom: var(--space-md);
+    gap: var(--space-xs);
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+    flex: 1;
 }
 
 .filterTab {
-    padding: 8px 16px;
+    padding: 7px 14px;
     border: 1px solid var(--border);
     border-radius: var(--radius-full);
     background: transparent;
-    color: var(--text-secondary);
-    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
     font-weight: 500;
     cursor: pointer;
     white-space: nowrap;
@@ -21,27 +30,67 @@
 }
 
 .filterTab:hover {
-    background: var(--bg-hover);
+    color: var(--text-secondary);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .filterTabActive {
-    background: var(--blue);
-    color: white;
-    border-color: var(--blue);
+    background: var(--brand-orange);
+    color: var(--text-inverse);
+    border-color: var(--brand-orange);
+}
+
+.supplierSelect {
+    padding: 7px 12px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.8rem;
+    min-width: 140px;
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+}
+
+.supplierSelect:focus {
+    outline: none;
+    border-color: var(--brand-orange);
+}
+
+.supplierSelect option {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
 }
 
 .feedList {
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    gap: var(--space-sm);
 }
 
 .deliveryCard {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
     padding: var(--space-md);
     animation: fadeIn 0.2s ease;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.deliveryCard:hover {
+    border-color: rgba(232, 145, 45, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.deliveryCard:active {
+    transform: scale(0.99);
 }
 
 .cardHeader {
@@ -52,37 +101,64 @@
 }
 
 .cardTime {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
 }
 
 .cardSupplier {
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.95rem;
     margin-bottom: var(--space-xs);
+    letter-spacing: -0.01em;
 }
 
 .cardMeta {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-sm);
-    margin-bottom: var(--space-sm);
-    font-size: 0.8rem;
-    color: var(--text-secondary);
+    font-size: 0.75rem;
+    color: var(--text-muted);
 }
 
 .cardSummary {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
-    font-style: italic;
     border-top: 1px solid var(--border);
     padding-top: var(--space-sm);
     margin-top: var(--space-sm);
+    line-height: 1.5;
+}
+
+.cardArrow {
+    position: absolute;
+    right: var(--space-md);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.deliveryCard:hover .cardArrow {
+    opacity: 1;
 }
 
 .emptyState {
     text-align: center;
     padding: var(--space-2xl);
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+    .filterRow {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .supplierSelect {
+        min-width: unset;
+    }
 }

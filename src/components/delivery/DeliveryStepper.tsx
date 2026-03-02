@@ -84,9 +84,9 @@ export default function DeliveryStepper() {
     if (success) {
         return (
             <div className={styles.successOverlay}>
-                <span className={styles.successIcon}>✅</span>
-                <span className={styles.successText}>Delivery Submitted!</span>
-                <span className={styles.successSub}>Processing documents...</span>
+                <div className={styles.successIcon}>✓</div>
+                <span className={styles.successText}>Delivery submitted</span>
+                <span className={styles.successSub}>Documents are being processed</span>
             </div>
         );
     }
@@ -94,9 +94,9 @@ export default function DeliveryStepper() {
     return (
         <div className={styles.stepperWrapper}>
             <div className={styles.header}>
-                <span className={styles.headerTitle}>📦 New Delivery</span>
-                <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>
-                    Step {step + 1} of {STEPS.length}
+                <span className={styles.headerTitle}>New Delivery</span>
+                <span className={styles.headerStep}>
+                    {step + 1} / {STEPS.length}
                 </span>
             </div>
 

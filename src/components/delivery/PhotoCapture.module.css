@@ -7,7 +7,7 @@
 
 .captureButton {
     width: 100%;
-    max-width: 320px;
+    max-width: 300px;
     aspect-ratio: 4/3;
     display: flex;
     flex-direction: column;
@@ -15,7 +15,7 @@
     justify-content: center;
     gap: var(--space-sm);
     background: var(--bg-input);
-    border: 2px dashed var(--border);
+    border: 1px dashed rgba(255, 255, 255, 0.08);
     border-radius: var(--radius-lg);
     cursor: pointer;
     transition: all var(--transition-normal);
@@ -23,29 +23,38 @@
 }
 
 .captureButton:hover {
-    border-color: var(--blue);
+    border-color: var(--brand-orange);
     background: var(--bg-hover);
 }
 
 .captureIcon {
-    font-size: 2.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--brand-orange-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--brand-orange);
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 .captureLabel {
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-size: 0.85rem;
+    font-weight: 500;
     color: var(--text-secondary);
 }
 
 .captureHint {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
 }
 
 .previewWrapper {
     position: relative;
     width: 100%;
-    max-width: 320px;
+    max-width: 300px;
     border-radius: var(--radius-lg);
     overflow: hidden;
 }
@@ -55,7 +64,7 @@
     aspect-ratio: 4/3;
     object-fit: cover;
     border-radius: var(--radius-lg);
-    border: 2px solid var(--green);
+    border: 1px solid var(--green);
 }
 
 .retakeOverlay {
@@ -64,15 +73,15 @@
     left: 0;
     right: 0;
     padding: var(--space-sm);
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.6);
     text-align: center;
     cursor: pointer;
 }
 
 .retakeText {
     color: white;
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 0.8rem;
+    font-weight: 500;
 }
 
 .hiddenInput {

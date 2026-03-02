@@ -18,6 +18,28 @@ export async function GET(request: Request) {
         const supabase = await createClient();
         const url = new URL(request.url);
         const filter = url.searchParams.get('filter') || 'today';
+        const supplier = url.searchParams.get('supplier') || '';
+
+        // Handle missing_docs filter — returns document_tracking records
+        if (filter === 'missing_docs') {
+            const { data: docs } = await supabase
+                .from('document_tracking')
+                .select('*, deliveries(supplier)')
+                .eq('status', 'missing')
+                .order('flagged_at', { ascending: false });
+
+            const formatted = (docs || []).map((d) => ({
+                id: d.id,
+                delivery_id: d.delivery_id,
+                doc_type: d.doc_type,
+                status: d.status,
+                flagged_at: d.flagged_at,
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                supplier: (d as any).deliveries?.supplier || null,
+            }));
+
+            return NextResponse.json({ missingDocs: formatted });
+        }
 
         let query = supabase
             .from('deliveries')
@@ -39,6 +61,16 @@ export async function GET(request: Request) {
 
         if (['complete', 'issue', 'pending'].includes(filter)) {
             query = query.eq('status', filter);
+        }
+
+        // "Open" filter: pending + issue combined
+        if (filter === 'open') {
+            query = query.in('status', ['pending', 'issue']);
+        }
+
+        // Supplier filter
+        if (supplier) {
+            query = query.eq('supplier', supplier);
         }
 
         const { data: deliveries, error } = await query;

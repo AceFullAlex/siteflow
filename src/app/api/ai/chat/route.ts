@@ -62,7 +62,8 @@ export async function POST(request: Request) {
 
         // Step 2: Execute the query
         const supabase = await createClient();
-        let query = supabase.from(plan.table).select(plan.select || '*');
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        let query: any = supabase.from(plan.table).select(plan.select || '*');
 
         if (plan.filters) {
             for (const f of plan.filters) {

@@ -11,23 +11,32 @@
     justify-content: space-between;
     padding: var(--space-md);
     border-bottom: 1px solid var(--border);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
 }
 
 .headerTitle {
-    font-size: 1.1rem;
-    font-weight: 700;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+.headerStep {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
 }
 
 .progressBar {
-    height: 4px;
-    background: var(--bg-input);
+    height: 3px;
+    background: rgba(255, 255, 255, 0.03);
 }
 
 .progressFill {
     height: 100%;
-    background: var(--blue);
+    background: var(--brand-orange);
     transition: width 0.3s ease;
-    border-radius: 2px;
 }
 
 .stepContent {
@@ -39,18 +48,14 @@
     padding: var(--space-xl) var(--space-md);
     gap: var(--space-lg);
     animation: fadeIn 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .stepLabel {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 500;
     color: var(--text-secondary);
-    text-align: center;
-}
-
-.stepHint {
-    font-size: 0.85rem;
-    color: var(--text-muted);
     text-align: center;
 }
 
@@ -63,10 +68,12 @@
 }
 
 .formLabel {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
     margin-bottom: var(--space-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 .navigation {
@@ -74,7 +81,9 @@
     gap: var(--space-md);
     padding: var(--space-md);
     border-top: 1px solid var(--border);
-    background: var(--bg-secondary);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
 }
 
 .navigation .btn {
@@ -86,7 +95,7 @@
     max-width: 320px;
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: var(--space-xs);
 }
 
 .docItem {
@@ -94,10 +103,17 @@
     align-items: center;
     gap: var(--space-sm);
     padding: var(--space-sm) var(--space-md);
-    background: var(--bg-card);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-sm);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-secondary);
+}
+
+.stepHint {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: center;
 }
 
 .successOverlay {
@@ -114,17 +130,24 @@
 }
 
 .successIcon {
-    font-size: 4rem;
-    animation: pulse 1s ease;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--green-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    border: 2px solid var(--green);
 }
 
 .successText {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--green);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
 .successSub {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
 }

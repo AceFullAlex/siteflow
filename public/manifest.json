@@ -4,8 +4,8 @@
     "description": "Logistics management for datacenter construction sites",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#0a0e17",
-    "theme_color": "#0a0e17",
+    "background_color": "#0f1318",
+    "theme_color": "#0f1318",
     "orientation": "portrait",
     "icons": [
         {

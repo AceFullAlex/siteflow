@@ -1,7 +1,18 @@
 {
-  "status": "init",
-  "scope": "codebase",
+  "status": "commited",
   "type": "frontend",
-  "localEndpoint": "http://localhost:3000/",
-  "serverPort": 50673
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "executionArgs": {
+    "projectName": "siteflow",
+    "projectPath": "/Users/alextalpig/Documents/LOGISTICS/siteflow",
+    "testIds": [],
+    "additionalInstruction": "",
+    "serverMode": "development",
+    "envs": {
+      "API_KEY": "sk-user-0b4OpXBiT3dIpfgdFuJQhxz02e6HSXPFhoanr2ugC1bHQvFqUYyiRWOyt7beRmEz892yQS9kVgrTB5LmUPMh4WHY6FyKJO7-yKtMiR2J_f1TcNhoKYKDwDSNyQ9bX-WQS-Y"
+    }
+  },
+  "serverPort": 55892,
+  "proxy": "http://167010c5-4259-42a9-9c70-f23bd797b0d2:YeQnNj64OlFzKfqK7kMuhCc81RPIQzp2@tun.testsprite.com:8080"
 }

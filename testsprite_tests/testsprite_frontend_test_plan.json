@@ -1,0 +1,1133 @@
+[
+  {
+    "id": "TC001",
+    "title": "Switch to Action Center tab and view summary content",
+    "description": "Verifies an admin can open the dashboard and view Action Center content after switching tabs.",
+    "category": "Admin Dashboard - Tabs",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password or PIN field"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Sign in\" or \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Click on Action Center tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Action Center\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"stats\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Switch to Deliveries tab and view deliveries list after loading",
+    "description": "Verifies the Deliveries tab shows a loading state and then renders a list of deliveries.",
+    "category": "Admin Dashboard - Tabs",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password or PIN field"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Sign in\" or \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Click on Deliveries tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"skeleton loader\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"deliveries list\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Switch to Materials tab and view Material Progress content",
+    "description": "Verifies the Materials tab renders the Material Progress view when selected.",
+    "category": "Admin Dashboard - Tabs",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password or PIN field"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Sign in\" or \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Click on Materials tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Materials\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Material Progress\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Rapid tab switching keeps UI responsive and shows selected tab content",
+    "description": "Verifies switching between tabs multiple times results in the expected tab content being visible each time.",
+    "category": "Admin Dashboard - Tabs",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password or PIN field"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Sign in\" or \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Click on Deliveries tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Deliveries\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on Materials tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Material Progress\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on Action Center tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Action Center\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Selected tab state is visually indicated after switching tabs",
+    "description": "Verifies the currently selected tab is visibly highlighted to the user after a tab click.",
+    "category": "Admin Dashboard - Tabs",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password or PIN field"
+      },
+      {
+        "type": "action",
+        "description": "Click on the \"Sign in\" or \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Click on Deliveries tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Deliveries tab (selected)\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click on Materials tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Materials tab (selected)\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Resolve a missing document successfully (optimistic removal persists)",
+    "description": "Verifies that resolving a missing document removes it immediately and it stays removed after backend confirmation.",
+    "category": "Admin Dashboard - Missing Documents (Optimistic Resolve)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"MissingDocsTracker\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Resolve\" button on the first missing document in the MissingDocsTracker list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Unable to resolve, try again\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "MissingDocsTracker is visible on Admin Dashboard and shows missing-doc context",
+    "description": "Verifies that the MissingDocsTracker module renders on the Admin Dashboard and communicates missing documents to the user.",
+    "category": "Admin Dashboard - Missing Documents (Optimistic Resolve)",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"MissingDocsTracker\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Missing\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Resolve action provides immediate visual feedback (item disappears right away)",
+    "description": "Verifies the optimistic UI behavior where an item disappears immediately after clicking Resolve.",
+    "category": "Admin Dashboard - Missing Documents (Optimistic Resolve)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"MissingDocsTracker\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Resolve\" button on the first missing document in the MissingDocsTracker list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"MissingDocsTracker\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "No error banner is shown after a successful resolve",
+    "description": "Verifies that success path does not display the failure message after resolving a missing document.",
+    "category": "Admin Dashboard - Missing Documents (Optimistic Resolve)",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"MissingDocsTracker\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Resolve\" button on the first missing document in the MissingDocsTracker list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Unable to resolve, try again\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Open AI chat panel from Admin Dashboard",
+    "description": "Verifies that an authenticated admin can open the AI chat assistant panel from the dashboard UI.",
+    "category": "Admin Dashboard - AI Chat Assistant",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" or \"Log in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Click the AI chat toggle button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"AI chat\" panel is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Send a natural-language question and receive an AI response",
+    "description": "Verifies that the AI chat accepts a question and displays an AI response message in the conversation.",
+    "category": "Admin Dashboard - AI Chat Assistant",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" or \"Log in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Click the AI chat toggle button"
+      },
+      {
+        "type": "action",
+        "description": "Type \"How many pipes arrived this month?\" into the chat message input field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Send\" button"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Chat shows the user message after sending",
+    "description": "Verifies that after sending a message, the user's message appears in the chat history.",
+    "category": "Admin Dashboard - AI Chat Assistant",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" or \"Log in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Click the AI chat toggle button"
+      },
+      {
+        "type": "action",
+        "description": "Type \"How many pipes arrived this month?\" into the chat message input field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Send\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"How many pipes arrived this month?\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Prevent sending an empty message",
+    "description": "Verifies that the Send action is blocked or no message is posted when the chat input is empty.",
+    "category": "Admin Dashboard - AI Chat Assistant",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" or \"Log in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Click the AI chat toggle button"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Send\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"How many pipes arrived this month?\" is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "AI chat panel can be closed and reopened without losing access to input",
+    "description": "Verifies that the user can toggle the AI chat panel off and on and still see a usable input area.",
+    "category": "Admin Dashboard - AI Chat Assistant",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" or \"Log in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Click the AI chat toggle button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"chat message input\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the AI chat toggle button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"AI chat\" panel is not visible"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Long message can be entered into chat input",
+    "description": "Verifies that the chat input accepts a longer natural-language request without breaking the UI before sending.",
+    "category": "Admin Dashboard - AI Chat Assistant",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" or \"Log in\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Click the AI chat toggle button"
+      },
+      {
+        "type": "action",
+        "description": "Type \"Summarize all deliveries received this month by material type and highlight any discrepancies in counts versus last month.\" into the chat message input field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Summarize all deliveries received this month\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Unloader home displays gamified progress and stats",
+    "description": "Verifies the Unloader home screen shows the progress bar and key stats cards/labels.",
+    "category": "Unloader Home (Gamified Intake)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /unloader"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"progress\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Deliveries Today\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Points\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Unloader home shows streak stat and Log New Delivery entry point",
+    "description": "Verifies the Unloader home includes Streak stat and the primary call-to-action to log a new delivery.",
+    "category": "Unloader Home (Gamified Intake)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /unloader"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Streak\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Log New Delivery\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC018",
+    "title": "Open delivery stepper from Unloader home",
+    "description": "Verifies clicking \"Log New Delivery\" opens the delivery stepper flow.",
+    "category": "Unloader Home (Gamified Intake)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /unloader"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Log New Delivery\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Delivery\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"step\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC019",
+    "title": "Delivery stepper can be launched repeatedly without breaking the home view",
+    "description": "Verifies the user can start the delivery stepper, close/cancel it, and start it again from the Unloader home.",
+    "category": "Unloader Home (Gamified Intake)",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username/email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" button"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /unloader"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Log New Delivery\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"step\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Cancel\" button"
+      }
+    ]
+  },
+  {
+    "id": "TC020",
+    "title": "View delivery detail shows AI summary and photo gallery",
+    "description": "Verifies a signed-in user can open a delivery detail page and see the AI summary and photo gallery sections.",
+    "category": "Delivery Detail (View, Verify, Export)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password or PIN field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" or \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /delivery/123"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"AI Summary\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Photo gallery\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC021",
+    "title": "Expand a delivery photo to full-size view",
+    "description": "Verifies clicking a photo in the gallery opens an expanded full-size view.",
+    "category": "Delivery Detail (View, Verify, Export)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password or PIN field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" or \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /delivery/123"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first photo thumbnail in the photo gallery"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Expanded photo view\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC022",
+    "title": "Close expanded photo view and return to delivery detail",
+    "description": "Verifies the expanded photo view can be dismissed and the user returns to the delivery detail content.",
+    "category": "Delivery Detail (View, Verify, Export)",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password or PIN field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" or \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /delivery/123"
+      },
+      {
+        "type": "action",
+        "description": "Click on the first photo thumbnail in the photo gallery"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Expanded photo view\" is visible"
+      },
+      {
+        "type": "action",
+        "description": "Press \"Escape\""
+      }
+    ]
+  },
+  {
+    "id": "TC023",
+    "title": "Delivery detail shows extracted raw text section",
+    "description": "Verifies the delivery detail page displays a section for extracted raw text from AI scanning.",
+    "category": "Delivery Detail (View, Verify, Export)",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password or PIN field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" or \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /delivery/123"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Extracted Text\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Extracted raw text\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC024",
+    "title": "Export Delivery success initiates download",
+    "description": "Verifies that clicking Export Delivery starts an export process and indicates a download is being prepared.",
+    "category": "Delivery Detail (View, Verify, Export)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password or PIN field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" or \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /delivery/123"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Export Delivery\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Export\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Preparing\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC025",
+    "title": "Export Delivery error shows failure message and remains responsive",
+    "description": "Verifies that an export failure displays the correct error message and the UI remains usable afterward.",
+    "category": "Delivery Detail (View, Verify, Export)",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password or PIN field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" or \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /delivery/123"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Export Delivery\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"Export failed, try again\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Export Delivery\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC026",
+    "title": "Delivery detail handles missing photos gracefully",
+    "description": "Verifies the page shows a clear empty state when no photos are available for the delivery.",
+    "category": "Delivery Detail (View, Verify, Export)",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password or PIN field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" or \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /delivery/123"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"No photos\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"Photo gallery\" is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC027",
+    "title": "Delivery detail shows AI summary content is present (not empty)",
+    "description": "Verifies the AI summary section contains visible summary content rather than being blank.",
+    "category": "Delivery Detail (View, Verify, Export)",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_USER}}\" into the username or email field"
+      },
+      {
+        "type": "action",
+        "description": "Type \"{{LOGIN_PASSWORD}}\" into the password or PIN field"
+      },
+      {
+        "type": "action",
+        "description": "Click the \"Sign in\" or \"Login\" button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify URL contains \"/dashboard\""
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /delivery/123"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify text \"AI Summary\" is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify element \"AI summary content\" is visible"
+      }
+    ]
+  }
+]

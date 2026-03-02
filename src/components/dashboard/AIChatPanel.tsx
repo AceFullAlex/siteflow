@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { Bot, X, Send } from 'lucide-react';
 import styles from './AIChatPanel.module.css';
 
 interface Message {
@@ -25,6 +26,7 @@ export default function AIChatPanel() {
         const text = input.trim();
         if (!text || loading) return;
 
+        if (navigator.vibrate) navigator.vibrate(30);
         setInput('');
         setMessages((prev) => [...prev, { role: 'user', text }]);
         setLoading(true);
@@ -47,14 +49,23 @@ export default function AIChatPanel() {
 
     return (
         <>
-            <button className={styles.chatToggle} onClick={() => setOpen(!open)}>
-                {open ? '✕' : '🤖'}
+            <button
+                className={styles.chatToggle}
+                onClick={() => {
+                    if (navigator.vibrate) navigator.vibrate(30);
+                    setOpen(!open);
+                }}
+                aria-label={open ? 'Close AI chat' : 'Open AI chat'}
+                id="ai-chat-toggle"
+            >
+                {open ? <X size={20} /> : <Bot size={20} />}
             </button>
 
             {open && (
                 <div className={styles.chatPanel}>
                     <div className={styles.chatHeader}>
-                        <span>🤖 AI Assistant</span>
+                        <Bot size={16} />
+                        <span>AI Assistant</span>
                     </div>
 
                     <div className={styles.chatMessages}>
@@ -63,7 +74,13 @@ export default function AIChatPanel() {
                                 {msg.text}
                             </div>
                         ))}
-                        {loading && <div className={styles.thinking}>Thinking...</div>}
+                        {loading && (
+                            <div className={styles.thinking}>
+                                <span className={styles.thinkingDot} />
+                                <span className={styles.thinkingDot} />
+                                <span className={styles.thinkingDot} />
+                            </div>
+                        )}
                         <div ref={messagesEndRef} />
                     </div>
 
@@ -75,9 +92,15 @@ export default function AIChatPanel() {
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                             disabled={loading}
+                            id="ai-chat-input"
                         />
-                        <button className={styles.chatSend} onClick={handleSend} disabled={loading || !input.trim()}>
-                            →
+                        <button
+                            className={styles.chatSend}
+                            onClick={handleSend}
+                            disabled={loading || !input.trim()}
+                            id="ai-chat-send"
+                        >
+                            <Send size={16} />
                         </button>
                     </div>
                 </div>

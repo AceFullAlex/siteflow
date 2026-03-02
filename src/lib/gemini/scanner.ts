@@ -1,5 +1,6 @@
 import { ai, geminiModel } from './client';
 import { createClient } from '@/lib/supabase/server';
+import sharp from 'sharp';
 
 const SCAN_PROMPT = `You are analyzing a delivery document photo from a datacenter construction site.
 Extract ALL of the following information you can find. Return ONLY valid JSON, no markdown.
@@ -33,7 +34,6 @@ export async function scanDocument(base64: string, mimeType: string) {
         });
 
         const text = response.text || '';
-        // Extract JSON from response
         const jsonMatch = text.match(/\{[\s\S]*\}/);
         if (!jsonMatch) return null;
 
@@ -42,6 +42,18 @@ export async function scanDocument(base64: string, mimeType: string) {
         console.error('AI scan error:', e);
         return null;
     }
+}
+
+/**
+ * Compress an image buffer using sharp.
+ * Resizes to max 1200px width, JPEG quality 45.
+ * Reduces ~3MB photos down to ~200KB.
+ */
+async function compressImage(buffer: Buffer): Promise<Buffer> {
+    return sharp(buffer)
+        .resize({ width: 1200, withoutEnlargement: true })
+        .jpeg({ quality: 45 })
+        .toBuffer();
 }
 
 export async function processDeliveryDocuments(deliveryId: string) {
@@ -94,6 +106,51 @@ export async function processDeliveryDocuments(deliveryId: string) {
         }
         if (result.deliveryNoteNumber) {
             summaryParts.push(`DN#${result.deliveryNoteNumber}`);
+        }
+
+        // ── Post-AI Compression ──
+        // Compress the image now that AI has extracted data
+        try {
+            const compressed = await compressImage(Buffer.from(buffer));
+            await supabase.storage
+                .from('delivery-photos')
+                .update(photo.storage_path, compressed, {
+                    contentType: 'image/jpeg',
+                    upsert: true,
+                });
+            console.log(`[COMPRESS] ${photo.storage_path}: ${buffer.byteLength} → ${compressed.length} bytes`);
+        } catch (compressErr) {
+            console.error(`[COMPRESS] Failed for ${photo.storage_path}:`, compressErr);
+        }
+    }
+
+    // Also compress non-document photos (truck, material)
+    const { data: allPhotos } = await supabase
+        .from('delivery_photos')
+        .select('*')
+        .eq('delivery_id', deliveryId)
+        .neq('photo_type', 'document');
+
+    if (allPhotos?.length) {
+        for (const photo of allPhotos) {
+            try {
+                const { data: fileData } = await supabase.storage
+                    .from('delivery-photos')
+                    .download(photo.storage_path);
+                if (!fileData) continue;
+
+                const buf = Buffer.from(await fileData.arrayBuffer());
+                const compressed = await compressImage(buf);
+                await supabase.storage
+                    .from('delivery-photos')
+                    .update(photo.storage_path, compressed, {
+                        contentType: 'image/jpeg',
+                        upsert: true,
+                    });
+                console.log(`[COMPRESS] ${photo.storage_path}: ${buf.length} → ${compressed.length} bytes`);
+            } catch {
+                // Skip failed compressions
+            }
         }
     }
 

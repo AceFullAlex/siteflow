@@ -1,0 +1,103 @@
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-md);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.navLeft {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.homeBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.homeBtn:hover {
+    background: var(--bg-hover);
+    color: var(--brand-orange);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.homeBtn:active {
+    transform: scale(0.95);
+}
+
+.navBrand {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+}
+
+.navAccent {
+    color: var(--brand-orange);
+}
+
+.navRight {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.navUser {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.navRole {
+    color: var(--brand-orange);
+    font-weight: 500;
+}
+
+.navBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.navBtn:hover {
+    background: var(--red-soft);
+    color: var(--red);
+    border-color: rgba(248, 113, 113, 0.2);
+}
+
+.navBtn:active {
+    transform: scale(0.95);
+}
+
+@media (max-width: 480px) {
+    .navUser {
+        display: none;
+    }
+}

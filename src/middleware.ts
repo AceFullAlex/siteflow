@@ -4,6 +4,7 @@ const protectedRoutes: Record<string, string[]> = {
     '/dashboard': ['admin'],
     '/unloader': ['admin', 'unloader'],
     '/manager': ['admin', 'manager'],
+    '/delivery': ['admin', 'manager'],
 };
 
 export function middleware(request: NextRequest) {
